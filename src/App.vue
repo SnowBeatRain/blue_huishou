@@ -11,7 +11,7 @@
             </p>
           </div>
         </router-link>
-        <!-- <router-link class="nav-a" to="/tablist"> -->
+        <router-link class="nav-a" to="/tablist">
           <div class="span" @click="gotoClick()">
             <p class="model_nav">
             </p>
@@ -19,7 +19,7 @@
               <span class="titleName">机型</span>
             </p>
           </div>
-        <!-- </router-link> -->
+        </router-link>
         <router-link class="nav-a" to="/found">
           <div class="span">
             <p class="foundl_nav">

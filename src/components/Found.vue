@@ -5,21 +5,11 @@
       <router-link to="/found/founddetail">
         <li>
           <div class="left">
-            <p class="text">618掏空你的钱包，蓝色回收 给你送一波回血福利</p>
+            <p class="text">iPhone X销量疯狂下滑：苹果狠心砍单！</p>
             <p class="icon"><img src="../../static/images/eye@2x.png" alt=""><span>628</span></p>
           </div>
           <div class="right">
-            <img src="../../static/images/banner@2x.png" alt="">
-          </div>
-        </li>
-      </router-link><router-link to="/found/founddetail">
-        <li>
-          <div class="left">
-            <p class="text">618掏空你的钱包，蓝色回收 给你送一波回血福利</p>
-            <p class="icon"><img src="../../static/images/eye@2x.png" alt=""><span>385</span></p>
-          </div>
-          <div class="right">
-            <img src="../../static/images/banner@2x.png" alt="">
+            <img src="../../static/images/detailImg.png" alt="">
           </div>
         </li>
       </router-link>
@@ -111,7 +101,7 @@ li {
   .right {
     float: right;
     img {
-      width: 8rem;
+      width: 7rem;
       height: 5rem;
       margin-top: 0.625rem;
     }
