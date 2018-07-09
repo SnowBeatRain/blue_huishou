@@ -7,7 +7,7 @@
             <p class="home_nav">
             </p>
             <p class="bottom">
-              <span class="titleName">包裹</span>
+              <span class="titleName">首页</span>
             </p>
           </div>
         </router-link>

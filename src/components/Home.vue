@@ -110,7 +110,7 @@
         </li>
       </ul>
     </div>
-    <div class="footer">蓝色回收质检标准</div>
+    <!-- <div class="footer">蓝色回收质检标准</div> -->
 
   </div>
 </template>
@@ -136,8 +136,10 @@ export default {
   },
   methods: {
     estimateBtn() {
-      alert(navigator.userAgent);
-      // console.log(navigator.appName)
+      // alert(navigator.userAgent);
+      localStorage.setItem("PName", e);
+      localStorage.setItem("PTab", this.tab);
+      this.$router.push("/tablist/select");
     },
     gotoList(e) {
       this.$router.push("/tablist");

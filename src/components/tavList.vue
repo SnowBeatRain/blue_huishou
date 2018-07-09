@@ -5,81 +5,20 @@
         <div class="tablist">
           <div class="listLeft">
             <ul>
-              <li class="click_active">
-                <span>苹果</span>
-              </li>
-              <li>
-                <span>华为</span>
-              </li>
-              <li>
-                <span>三星</span>
-              </li>
-              <li>
-                <span>oppo</span>
-              </li>
-              <li>
-                <span>vivo</span>
-              </li>
-              <li>
-                <span>小米</span>
-              </li>
-              <li>
-                <span>荣耀</span>
-              </li>
-              <li>
-                <span>魅族</span>
-              </li>
-              <li>
-                <span>酷派</span>
-              </li>
-              <li>
-                <span>联想</span>
-              </li>
-              <li>
-                <span>金立</span>
-              </li>
-              <li>
-                <span>乐视</span>
-              </li>
-              <li>
-                <span>锤子</span>
+              <li :class="Phactive == i?'click_active':''" v-for="(l,i) in PhoneList" :key="i" @click="clickTab(i)">
+                <span>{{l.name}}</span>
               </li>
             </ul>
           </div>
           <div class="listRight">
             <ul>
-              <router-link to="/tablist/select">
-                <li @touchstart="touchstart($event)">
-                  <span class="first">1</span>IPhone X</li>
-              </router-link>
-              <li>
-                <span class="second">2</span>IPhone 8 Plus</li>
-              <li>
-                <span class="three">3</span>IPhone 8</li>
-              <li>
-                <span>4</span> IPhone 7 Plus</li>
-              <li>
-                <span>5</span> IPhone 7</li>
-              <li>
-                <span>6</span> IPhone 6s Plus</li>
-              <li>
-                <span>7</span> IPhone 6s</li>
-              <li>
-                <span>8</span> IPhone SE</li>
-              <li>
-                <span>9</span> IPhone 6 Plus</li>
-              <li>
-                <span>10</span> IPhone 6</li>
-              <li>
-                <span>11</span> IPhone 5s</li>
-              <li>
-                <span>12</span> IPhone 5c</li>
-              <li>
-                <span>13</span> IPhone 5</li>
-              <li>
-                <span>14</span> IPhone 4s</li>
-              <li>
-                <span>15</span> IPhone 4</li>
+                <li @click="touchstart(l.name)" v-for="(l,i) in PhoneList[Phactive].children"  :key="i">
+                  <span v-if="i+1 ==1" class="first">{{i+1}}</span>
+                  <span v-else-if="i+1 ==2" class="second">{{i+1}}</span>
+                  <span v-else-if="i+1 ==3" class="three">{{i+1}}</span>
+                  <span v-else>{{i+1}}</span>
+                  {{l.name}}
+                </li>
             </ul>
           </div>
           <div class="clear"></div>
@@ -89,75 +28,20 @@
         <div class="tablist">
           <div class="listLeft">
             <ul>
-              <router-link to="/tablist/select">
-                <li class="click_active">
-                  <span>苹果</span>
-                </li>
-              </router-link>
-              <li>
-                <span>华为</span>
-              </li>
-              <li>
-                <span>三星</span>
-              </li>
-              <li>
-                <span>华硕</span>
-              </li>
-              <li>
-                <span>小米</span>
-              </li>
-              <li>
-                <span>华硕</span>
-              </li>
-              <li>
-                <span>荣耀</span>
-              </li>
-              <li>
-                <span>联想</span>
-              </li>
-              <li>
-                <span>诺基亚</span>
-              </li>
-              <li>
-                <span>戴尔</span>
-              </li>
-              <li>
-                <span>海尔</span>
+               <li :class="Padactive == i?'click_active':''" v-for="(l,i) in PadList" :key="i" @click="clickPad(i)">
+                <span>{{l.name}}</span>
               </li>
             </ul>
           </div>
           <div class="listRight">
             <ul>
-              <li @touchstart="touchstart($event)">
-                <span class="first">1</span>iPad Pro(12.9寸) 2017年</li>
-              <li>
-                <span class="second">2</span>iPad Pro(10.5寸) 2017年</li>
-              <li>
-                <span class="three">3</span>iPad Pro</li>
-              <li>
-                <span>4</span>Apple iPad(iPad 5th gen)</li>
-              <li>
-                <span>5</span>iPad 2018年新款9.7寸</li>
-              <li>
-                <span>6</span>iPad Air 2</li>
-              <li>
-                <span>7</span>iPad Air 2</li>
-              <li>
-                <span>8</span>iPad mini 4</li>
-              <li>
-                <span>9</span>iPad Air 1</li>
-              <li>
-                <span>10</span>iPad mini 2</li>
-              <li>
-                <span>11</span>iPad 4</li>
-              <li>
-                <span>12</span>iPad mini 1</li>
-              <li>
-                <span>13</span>iPad 3</li>
-              <li>
-                <span>14</span>iPad 2</li>
-              <li>
-                <span>15</span>iPad 1</li>
+                <li @click="touchstart(l.name)" v-for="(l,i) in PadList[Padactive].children"  :key="i">
+                  <span v-if="i+1 ==1" class="first">{{i+1}}</span>
+                  <span v-else-if="i+1 ==2" class="second">{{i+1}}</span>
+                  <span v-else-if="i+1 ==3" class="three">{{i+1}}</span>
+                  <span v-else>{{i+1}}</span>
+                  {{l.name}}
+                </li>
             </ul>
           </div>
         </div>
@@ -173,17 +57,35 @@ import "vue-ydui/dist/ydui.base.css";
 Vue.component(Tab.name, Tab);
 Vue.component(TabPanel.name, TabPanel);
 
+import pList from "../../static/js/phone.js";
+import padList from "../../static/js/pad.js";
 export default {
   data() {
     return {
-      tab: 0
+      PhoneList: [],
+      PadList: [],
+      tab: 0,
+      Phactive: 0, // 判断点击的是哪一个手机
+      Padactive: 0 // 判断点击的是哪一个手机
     };
   },
   components: {},
   methods: {
+    clickTab(e) {
+      this.Phactive = e;
+    },
+    clickPad(e) {
+      this.Padactive = e;
+    },
     touchstart(e) {
-      console.log(e.target);
+      localStorage.setItem("PName",e)
+      localStorage.setItem("PTab",this.tab)
+      this.$router.push("/tablist/select")
     }
+  },
+  beforeMount() {
+    this.PhoneList = pList;
+    this.PadList = padList;
   },
   mounted() {
     var type = localStorage.getItem("listType");

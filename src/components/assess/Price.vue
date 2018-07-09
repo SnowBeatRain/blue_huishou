@@ -1,28 +1,16 @@
 <template>
   <div class="root">
     <div class="header">
-      <p>您的iPhone X 的估价</p>
+      <p>您的 {{PName}} 的估价</p>
       <p>
-        <span>￥1880</span>
-        <span>重新估价></span>
+        <span>￥{{price}}</span>
+        <span @click="returnSelect()">重新估价></span>
       </p>
       <p>下单既享7天保价服务，最终成交价以工程师检测为准</p>
     </div>
     <div class="tag">
       <ul>
-        <li>机身完好</li>
-        <li>大陆国行</li>
-        <li>保修一个月以上</li>
-        <li>全新</li>
-        <li>正常开机</li>
-        <li>非官换机</li>
-        <li>液晶正常</li>
-        <li>64G</li>
-        <li>指纹功能正常</li>
-        <li>WIFI正常</li>
-        <li>无进水</li>
-        <li>修主板/换外壳</li>
-        <li>通话正常</li>
+        <li v-for="(l,i) in tagList" :key="i">{{l}}</li>
       </ul>
     </div>
     <div class="line"></div>
@@ -46,15 +34,46 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      PName: "",
+      tagList: [],
+      price: 0
+    };
   },
   components: {},
   methods: {
-    liji(){
-      this.$router.push("/tablist/liji")
+    liji() {
+      var d = new Date();
+      var date =
+        d.getFullYear() +
+        "/" +
+        (d.getMonth() + 1) +
+        "/" +
+        d.getDate() +
+        " " +
+        d.getHours() +
+        ":" +
+        d.getMinutes() +
+        ":" +
+        d.getSeconds();
+      var orderInfo = {};
+      var orderArr = [];
+      orderInfo.name = this.PName;
+      orderInfo.price = this.price;
+      orderInfo.date = date;
+      orderArr.push(orderInfo)
+      localStorage.setItem("orderArr", JSON.stringify(orderArr));
+      this.$router.push("/tablist/liji");
+    },
+    returnSelect() {
+      window.history.go(-1);
     }
   },
-  mounted() {}
+  mounted() {
+    this.tagList = localStorage.getItem("tagList").split(",");
+    this.PName = localStorage.getItem("PName");
+    this.price = Math.floor(Math.random() * 100 + 1726);
+  }
 };
 </script>
 <style scoped lang='scss'>

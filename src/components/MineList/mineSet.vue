@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <ul>
-        <li>
-          <div>清理缓存</div>
+        <li @click="cleanBtn()">
+          <div >清理缓存</div>
           <div>
             <img src="../../../static/images/enter@2x.png" alt="">
           </div>
@@ -23,7 +23,15 @@ export default {
       userInfo: {}
     };
   },
-  methods: {}
+  methods: {
+    cleanBtn() {
+      this.$dialog.loading.open("清理缓存中");
+      localStorage.clear()
+      setTimeout(() => {
+        this.$dialog.loading.close();
+      }, 1500);
+    }
+  }
 };
 </script>
 <style scoped>
@@ -41,7 +49,6 @@ export default {
   /* padding-bottom: 3.3rem; */
   background-color: #f7f7f7;
 }
-
 
 li {
   height: 3rem;
@@ -63,7 +70,6 @@ li div:nth-child(1) img {
   width: 100%;
   height: 100%;
 }
-
 
 li div:nth-child(2) {
   float: right;

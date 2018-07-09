@@ -2,16 +2,15 @@
   <div class="hello">
     <!-- list -->
     <ul>
-        <li>
+        <li v-for="(l,i) in orderList" :key="i">
           <div class="left">
             <img src="../../../static/images/banner@2x.png" alt="">
           </div>
           <div class="right">
-            <p><span>iphone7 plus</span><span class="red_color" style="float:right">已下单</span></p>
-            <p><span>评估价: <span class="red_color">￥2400</span></span></p>
-            <p><span class="time">2018/07/04  09:25:11</span> <button>取消</button></p>
+            <p><span>{{l.name}}</span><span class="red_color" style="float:right">已下单</span></p>
+            <p><span>评估价: <span class="red_color">￥{{l.price}}</span></span></p>
+            <p><span class="time">{{l.date}}</span> <button @click="cancel(i)">取消</button></p>
           </div>
-          
         </li>
     </ul>
   </div>
@@ -20,15 +19,24 @@
 export default {
   data() {
     return {
-      userInfo: {}
+      orderList: []
     };
   },
-  methods: {},
+  methods: {
+    cancel(n) {
+      this.orderList.splice(n, 1);
+      console.log(this.orderList);
+      localStorage.setItem("orderArr", this.orderList);
+    }
+  },
   mounted() {
     var boxHeight = document.body.clientHeight;
     $(".hello").css({
       "min-height": boxHeight
     });
+    if (localStorage.getItem("orderArr")) {
+      this.orderList = JSON.parse(localStorage.getItem("orderArr"));
+    }
   }
 };
 </script>
@@ -65,7 +73,7 @@ li {
       .red_color {
         color: #f96969;
       }
-      .time{
+      .time {
         color: #808080;
         font-size: 0.7rem;
       }

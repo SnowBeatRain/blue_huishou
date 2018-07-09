@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     saveBtn() {
+      var _this = this
       if (
         this.userName == "" ||
         this.userPhone == "" ||
@@ -54,7 +55,7 @@ export default {
           icon: "success"
         });
         setTimeout(() => {
-          window.history.go(-1);
+          _this.$router.push("/mine")
         }, 1000);
       }
     }
