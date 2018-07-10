@@ -221,6 +221,7 @@ export default {
   },
   beforeMount() {
     this.tab = localStorage.getItem("PTab"); // 根据tab判断是手机还是pad
+    console.log(this.tab)
     this.PName = localStorage.getItem("PName");
   },
   mounted() {
@@ -253,7 +254,7 @@ export default {
   height: 3.5rem;
   width: 100%;
   position: fixed;
-  top: 0;
+  top: 3rem;
   div {
     height: 3rem;
     background-color: #fff;
@@ -278,6 +279,7 @@ export default {
 .select_list {
   width: 100%;
   padding: 3.5rem 0;
+  margin-top: 3rem;
   background-color: #fff;
   font-family: "方正兰亭黑";
   div {

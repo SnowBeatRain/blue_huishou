@@ -2,14 +2,47 @@
   <div class="hello">
     <!-- list -->
     <ul>
-      <router-link to="/found/founddetail">
+      <router-link to="/found/founddetail/num=1">
         <li>
           <div class="left">
-            <p class="text">iPhone X销量疯狂下滑：苹果狠心砍单！</p>
-            <p class="icon"><img src="../../static/images/eye@2x.png" alt=""><span>628</span></p>
+            <p class="text">用热门大型手游测试华为“很吓人技术”，体验果然不同凡响</p>
+            <p class="icon"><img src="../../static/images/eye@2x.png" alt=""><span>1056</span></p>
           </div>
           <div class="right">
-            <img src="../../static/images/detailImg.png" alt="">
+            <img src="../../static/images/num1.png" alt="">
+          </div>
+        </li>
+      </router-link>
+      <router-link to="/found/founddetail/num=2">
+        <li>
+          <div class="left">
+            <p class="text">OPPO再推高价低配新手机，网友表示果然还是原来的配方</p>
+            <p class="icon"><img src="../../static/images/eye@2x.png" alt=""><span>981</span></p>
+          </div>
+          <div class="right">
+            <img src="../../static/images/num2.png" alt="">
+          </div>
+        </li>
+      </router-link>
+      <router-link to="/found/founddetail/num=3">
+        <li>
+          <div class="left">
+            <p class="text">VIVO 欲通过NEX打通全球市场，本月底将在这几个国家上市</p>
+            <p class="icon"><img src="../../static/images/eye@2x.png" alt=""><span>45</span></p>
+          </div>
+          <div class="right">
+            <img src="../../static/images/num3.png" alt="">
+          </div>
+        </li>
+      </router-link>
+      <router-link to="/found/founddetail/num=4">
+        <li>
+          <div class="left">
+            <p class="text">小米上市雷军这么说，网友表示不枉一直支持</p>
+            <p class="icon"><img src="../../static/images/eye@2x.png" alt=""><span>176</span></p>
+          </div>
+          <div class="right">
+            <img src="../../static/images/num4.png" alt="">
           </div>
         </li>
       </router-link>
@@ -24,38 +57,6 @@ export default {
     };
   },
   methods: {
-    getUserInfo() {
-      // this.$dialog.loading.open();
-      $.ajax({
-        type: "get",
-        url: domain.baseurl + "/api/User/Info",
-        datatype: "json",
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader("Authorization", getCookie("token"));
-        },
-        success: function(data) {
-          // this.$dialog.loading.close();
-          if (data.Status == 1) {
-            this.userInfo = data.Result;
-            if (this.userInfo.NickName.length >= 16) {
-              this.userInfo.NickName =
-                this.userInfo.NickName.substring(0, 16) + "...";
-            } else {
-              this.userInfo.NickName = this.userInfo.NickName;
-            }
-          } else if (data.Status == 40033) {
-            alert(data.Result);
-            window.location.href = "#//login";
-          } else {
-            window.location.href = "#//error";
-          }
-        }.bind(this),
-        error: function() {
-          // this.$dialog.loading.close();
-          alert("获取数据异常，请检查网络");
-        }.bind(this)
-      });
-    }
   }
 };
 </script>
@@ -63,7 +64,7 @@ export default {
 .hello {
   font-family: "方正兰亭黑";
   letter-spacing: 0.05rem;
-  // padding-bottom: 3.3rem;
+  padding-top: 3rem;
   margin-bottom: 3.3rem;
   background-color: #f5f7fa;
 }

@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "@/components/Home";
 var Mine = resolve => require(["../components/Mine"], resolve);
+var Login = resolve => require(["../components/Login"], resolve);
 var mineSet = resolve =>
   require(["../components/MineList/mineSet.vue"], resolve);
 var address = resolve =>
@@ -22,6 +23,7 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
+    // { path: "/", redirect: '/mine/login' },
     {
       path: "/",
       meta: {
@@ -38,6 +40,12 @@ export default new Router({
         // keepAlive: true
       },
       component: Mine
+    },{
+      path: "/mine/login",
+      meta: {
+        title: "登录"
+      },
+      component: Login
     },
     {
       path: "/mine/mineset",
@@ -115,7 +123,7 @@ export default new Router({
       component: Found
     },
     {
-      path: "/found/founddetail",
+      path: "/found/founddetail/:num",
       meta: {
         title: "详情"
         // keepAlive: true

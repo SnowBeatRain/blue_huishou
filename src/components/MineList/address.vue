@@ -28,7 +28,7 @@ export default {
 </script>
 <style scoped lang='scss'>
 .root {
-  background-color: #fff;
+  // background-color: #fff;
   position: relative;
   .icon {
     width: 100%;

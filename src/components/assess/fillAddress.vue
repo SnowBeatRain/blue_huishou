@@ -50,13 +50,13 @@ export default {
         };
         localStorage.setItem("mailUsetAddress", JSON.stringify(userInfo));
         this.$dialog.toast({
-          mes: "设置成功",
-          timeout: 1000,
+          mes: "订单已提交成功 ,快递员会尽快和您联系",
+          timeout: 2500,
           icon: "success"
         });
         setTimeout(() => {
           _this.$router.push("/mine")
-        }, 1000);
+        }, 2500);
       }
     }
   },
@@ -80,6 +80,7 @@ export default {
 <style scoped>
 .hello {
   background: #f5f7fa;
+  padding-top: 3rem;
 }
 .list {
   padding: 0 1rem;

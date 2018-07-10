@@ -14,6 +14,9 @@
           </div>
         </li>
     </ul>
+    <div class="footer" @click="loginOut()">
+      退出登录
+    </div>
   </div>
 </template>
 <script>
@@ -26,10 +29,19 @@ export default {
   methods: {
     cleanBtn() {
       this.$dialog.loading.open("清理缓存中");
-      localStorage.clear()
+      localStorage.removeItem("PName")
+      localStorage.removeItem("PTab")
+      localStorage.removeItem("listType")
+      localStorage.removeItem("mailUsetAddress")
+      localStorage.removeItem("tagList")
+
       setTimeout(() => {
         this.$dialog.loading.close();
       }, 1500);
+    },
+    loginOut(){
+      localStorage.removeItem("user")
+      this.$router.push("/mine")
     }
   }
 };
@@ -46,7 +58,7 @@ export default {
 .hello {
   font-family: "方正兰亭黑";
   letter-spacing: 0.05rem;
-  /* padding-bottom: 3.3rem; */
+  padding-top: 3rem;
   background-color: #f7f7f7;
 }
 
@@ -81,5 +93,16 @@ li div:nth-child(2) img {
   /* width: 50%; */
   width: 1.5rem;
   margin-top: 0.75rem;
+}
+.footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #1D3AB2;
+  font-size: 0.94rem;
+  text-align: center;
+  height: 3rem;
+  line-height: 3rem;
+  background-color: #fff;
 }
 </style>

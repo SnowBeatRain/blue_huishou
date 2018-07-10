@@ -20,23 +20,47 @@
     <div class="footer">
       <div class="line"></div>
       <div class="box">
-        <a href="tel://400-800-9966">
-        <div>
+        <!-- <a href="tel://400-800-9966"> -->
+        <div  @click="show1 = true">
           <img src="../../../static/images/online_customer_service@2x.png" alt="">
           <p>客服</p>
         </div>
-        </a>
+        <!-- </a> -->
         <div @click="liji()">立即回收</div>
       </div>
     </div>
+
+        <yd-popup v-model="show1" position="center" width="90%">
+      <div class="module" style="background-color:#fff;border-radius: 5px;">
+        <div>
+          <p>
+          <img src="../../../static/images/window_customer_service@2x.png" alt="">
+        </p>
+        <p style="font-size:1rem;">服务时间7*12小时 9:00-19:00</p>
+        <a href="tel://400-800-9966">
+        <p style="font-size:1.2rem;">
+          400-800-9966
+        </p>
+        </a>
+        <p style="text-align: center;" @click="show1 = false">
+        </p>
+      </div></div>
+    </yd-popup>
   </div>
 </template>
 <script>
+import Vue from "vue";
+import { Popup } from "vue-ydui/dist/lib.rem/popup";
+/* 使用px：import {Popup} from 'vue-ydui/dist/lib.px/popup'; */
+
+Vue.component(Popup.name, Popup);
 export default {
   data() {
     return {
+      show1: false,
       PName: "",
       tagList: [],
+      orderList: [],
       price: 0
     };
   },
@@ -57,12 +81,11 @@ export default {
         ":" +
         d.getSeconds();
       var orderInfo = {};
-      var orderArr = [];
       orderInfo.name = this.PName;
       orderInfo.price = this.price;
       orderInfo.date = date;
-      orderArr.push(orderInfo)
-      localStorage.setItem("orderArr", JSON.stringify(orderArr));
+      this.orderList.push(orderInfo);
+      localStorage.setItem("orderArr", JSON.stringify(this.orderList));
       this.$router.push("/tablist/liji");
     },
     returnSelect() {
@@ -72,11 +95,17 @@ export default {
   mounted() {
     this.tagList = localStorage.getItem("tagList").split(",");
     this.PName = localStorage.getItem("PName");
+    if (localStorage.getItem("orderArr")) {
+      this.orderList = JSON.parse(localStorage.getItem("orderArr"));
+    }
     this.price = Math.floor(Math.random() * 100 + 1726);
   }
 };
 </script>
 <style scoped lang='scss'>
+.root {
+  padding-top: 3rem;
+}
 .header {
   width: 100%;
   height: 7.5rem;
@@ -152,5 +181,16 @@ export default {
       background-color: #1d3ab2;
     }
   }
+}
+.module {
+  height: 18.05rem;
+  padding: 3rem 0;
+}
+.module div p {
+  text-align: center;
+}
+.module div p img {
+  width: 7.8rem;
+  /* height: 6.28rem; */
 }
 </style>

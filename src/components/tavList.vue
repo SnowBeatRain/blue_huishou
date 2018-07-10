@@ -78,16 +78,24 @@ export default {
       this.Padactive = e;
     },
     touchstart(e) {
-      localStorage.setItem("PName",e)
-      localStorage.setItem("PTab",this.tab)
-      this.$router.push("/tablist/select")
+      localStorage.setItem("PName", e);
+      localStorage.setItem("PTab", this.tab);
+      this.$router.push("/tablist/select");
     }
   },
   beforeMount() {
     this.PhoneList = pList;
     this.PadList = padList;
+    var boxHeight = document.body.clientHeight - 9 * 16;
+    $(".tablist").css({
+      height: boxHeight
+    });
   },
   mounted() {
+    if (localStorage.getItem("user")) {
+    } else {
+      this.$router.push("/mine/login");
+    }
     var type = localStorage.getItem("listType");
     this.tab = Number(type);
   }
@@ -111,7 +119,7 @@ li {
   .listLeft {
     float: left;
     width: 6rem;
-    height: 31.5rem;
+    height: 27.5rem;
     text-align: center;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
@@ -147,7 +155,7 @@ li {
   .listRight {
     float: left;
     width: calc(100% - 6rem);
-    height: 31.5rem;
+    height: 27.5rem;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     ul {

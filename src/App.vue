@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Head :tabName="$route.meta.title" :isShow="isShow"></Head>
     <transition name="tabani" v-if="isShow">
       <div class='nav-bar'>
         <router-link class="nav-a" to="/">
@@ -52,6 +53,7 @@
 </template>
 
 <script>
+import Head from "./components/Header.vue"
 export default {
   name: "App",
   data: function() {
@@ -60,10 +62,23 @@ export default {
       isShow: false
     };
   },
+  components:{
+    Head
+  },
+  mounted(){
+    // this.getUserInfo()
+  },
   methods: {
     gotoClick() {
       localStorage.setItem("listType", 0);
       this.$router.push("/tablist");
+    },
+    getUserInfo() {
+      if (localStorage.getItem("user")) {
+        
+      } else {
+        this.$router.push("/mine/login");
+      }
     }
   },
   // 判断url长度 决定导航条的隐藏
@@ -237,6 +252,7 @@ button {
 }
 .yd-tab-box {
   position: fixed !important;
+  top: 3rem !important;
   height: 3rem !important;
   width: 100%;
   z-index: 1500 !important;
@@ -259,7 +275,7 @@ button {
 }
 .yd-tab-panel {
   position: absolute;
-  top: 3rem;
+  top: 6rem;
   margin-bottom: 6.5rem !important;
   z-index: 999 !important;
 }

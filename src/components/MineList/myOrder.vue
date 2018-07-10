@@ -4,7 +4,7 @@
     <ul>
         <li v-for="(l,i) in orderList" :key="i">
           <div class="left">
-            <img src="../../../static/images/banner@2x.png" alt="">
+            <img src="../../../static/images/goods3.jpg" alt="">
           </div>
           <div class="right">
             <p><span>{{l.name}}</span><span class="red_color" style="float:right">已下单</span></p>
@@ -26,7 +26,7 @@ export default {
     cancel(n) {
       this.orderList.splice(n, 1);
       console.log(this.orderList);
-      localStorage.setItem("orderArr", this.orderList);
+      localStorage.setItem("orderArr", JSON.stringify(this.orderList));
     }
   },
   mounted() {
@@ -44,7 +44,7 @@ export default {
 .hello {
   font-family: "方正兰亭黑";
   letter-spacing: 0.05rem;
-  // padding-bottom: 3.3rem;
+  padding-top: 3rem;
   margin-bottom: 3.3rem;
   background-color: #f5f7fa;
 }

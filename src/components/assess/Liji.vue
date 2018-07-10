@@ -53,6 +53,9 @@ export default {
 };
 </script>
 <style scoped lang='scss'>
+.root{
+  padding-top: 3rem;
+}
 h4 {
   color: #808080;
   font-size: 0.82rem;

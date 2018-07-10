@@ -133,12 +133,17 @@ export default {
     $(".hello").css({
       "min-height": boxHeight
     });
+    if (localStorage.getItem("user")) {
+    } else {
+      this.$router.push("/mine/login");
+    }
+    var PName = window.location.href.split("?")[1].split("#")[0];
+    localStorage.setItem("PName", unescape(PName));
   },
   methods: {
     estimateBtn() {
       // alert(navigator.userAgent);
-      localStorage.setItem("PName", e);
-      localStorage.setItem("PTab", this.tab);
+      // localStorage.setItem("PTab", this.tab);
       this.$router.push("/tablist/select");
     },
     gotoList(e) {
@@ -156,7 +161,7 @@ export default {
 <style scoped lang="scss">
 .hello {
   font-family: "方正兰亭黑";
-  /* padding: 1rem; */
+  padding-top: 3rem;
   letter-spacing: 0.05rem;
   padding-bottom: 3.3rem;
   background-color: #f4f4f4;

@@ -4,7 +4,9 @@
       <div>
         <img src="../../static/images/head_portrait@2x.png" alt="">
       </div>
-      <div>YH000012</div>
+      <!-- <router-link to="/mine/login"> -->
+        <div style="color:#fff;">{{userName}}</div>
+      <!-- </router-link> -->
     </div>
     <!-- list -->
     <ul>
@@ -93,41 +95,23 @@ export default {
   data() {
     return {
       show1: false,
-      userInfo: {}
+      userName: "点击登录"
     };
   },
   methods: {
     getUserInfo() {
-      // this.$dialog.loading.open();
-      $.ajax({
-        type: "get",
-        url: domain.baseurl + "/api/User/Info",
-        datatype: "json",
-        beforeSend: function(xhr) {
-          xhr.setRequestHeader("Authorization", getCookie("token"));
-        },
-        success: function(data) {
-          // this.$dialog.loading.close();
-          if (data.Status == 1) {
-            this.userInfo = data.Result;
-            if (this.userInfo.NickName.length >= 16) {
-              this.userInfo.NickName =
-                this.userInfo.NickName.substring(0, 16) + "...";
-            } else {
-              this.userInfo.NickName = this.userInfo.NickName;
-            }
-          } else if (data.Status == 40033) {
-            alert(data.Result);
-            window.location.href = "#//login";
-          } else {
-            window.location.href = "#//error";
-          }
-        }.bind(this),
-        error: function() {
-          // this.$dialog.loading.close();
-          alert("获取数据异常，请检查网络");
-        }.bind(this)
-      });
+      if (localStorage.getItem("user")) {
+        this.userName = JSON.parse(localStorage.getItem("user")).phone;
+      } else {
+        this.userName = "点击登录";
+      }
+    }
+  },
+  mounted() {
+    this.getUserInfo();
+    if (localStorage.getItem("user")) {
+    } else {
+      this.$router.push("/mine/login");
     }
   }
 };
@@ -144,7 +128,7 @@ export default {
 .hello {
   font-family: "方正兰亭黑";
   letter-spacing: 0.05rem;
-  /* padding-bottom: 3.3rem; */
+  padding-top: 3rem;
   background-color: #f7f7f7;
 }
 
@@ -224,7 +208,6 @@ li div:nth-child(3) img {
   /* width: 50%; */
   width: 1.5rem;
   margin-top: 0.75rem;
-  
 }
 
 .module {
